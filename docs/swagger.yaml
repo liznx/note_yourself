@@ -1,0 +1,24 @@
+info:
+  contact: {}
+paths:
+  /api/v1/wxminiapp/getWxOpenidByCode:
+    post:
+      description: 这是随心记微信小程序的后台接口文档
+      parameters:
+      - description: 小程序中前台wx.login获取的code
+        in: body
+        name: code
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":"","msg":"ok"}'
+          schema:
+            type: string
+      summary: 通过code获取用户唯一token
+      tags:
+      - 微信小程序交互
+swagger: "2.0"
