@@ -23,7 +23,7 @@ func GetWxOpenidByCode(c *gin.Context) {
 
 	json := make(map[string]interface{}) //注意该结构接受的内容
 	err := c.BindJSON(&json)
-    if(err != nil){
+    if err != nil {
         log.Printf("参数解析失败了！")
         c.JSON(http.StatusInternalServerError, gin.H{
             "code":  500,
@@ -54,7 +54,7 @@ func GetWxOpenidByCode(c *gin.Context) {
 func DecryptWxData(c *gin.Context) {
 	json := make(map[string]interface{}) //注意该结构接受的内容
 	err := c.BindJSON(&json)
-    if(err != nil){
+    if err != nil {
         log.Printf("参数解析失败了！")
         c.JSON(http.StatusInternalServerError, gin.H{
             "code":  500,
