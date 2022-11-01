@@ -22,7 +22,14 @@ import (
 func GetWxOpenidByCode(c *gin.Context) {
 
 	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
+	err := c.BindJSON(&json)
+    if(err != nil){
+        log.Printf("参数解析失败了！")
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "code":  500,
+            "msg":   "系统异常",
+        })
+    }
 	log.Printf("%v", &json)
 	code := json["code"].(string)
 	errcode, errmsg, token := services.RequestWxMiniAppToken(code)
@@ -46,7 +53,14 @@ func GetWxOpenidByCode(c *gin.Context) {
 // @Router /api/v1/wxminiapp/decryptWxData [post]
 func DecryptWxData(c *gin.Context) {
 	json := make(map[string]interface{}) //注意该结构接受的内容
-	c.BindJSON(&json)
+	err := c.BindJSON(&json)
+    if(err != nil){
+        log.Printf("参数解析失败了！")
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "code":  500,
+            "msg":   "系统异常",
+            })
+    }
 	log.Printf("%v", &json)
 	token := json["token"].(string)
 	encryptData := json["encryptData"].(string)
